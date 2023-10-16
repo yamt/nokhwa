@@ -37,6 +37,11 @@ fn main() {
     let mut threaded = CallbackCamera::new(first_camera.index().clone(), format, |buffer| {
         let image = buffer.decode_image::<RgbAFormat>().unwrap();
         println!("{}x{} {}", image.width(), image.height(), image.len());
+        let unixtime_ns = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .expect("unix time")
+            .as_nanos();
+        image.save(format!("{}.png", unixtime_ns)).unwrap();
     })
     .unwrap();
     threaded.open_stream().unwrap();

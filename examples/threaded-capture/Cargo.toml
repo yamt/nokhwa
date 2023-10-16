@@ -8,8 +8,9 @@ edition = "2018"
 [dependencies]
 
 [dependencies.image]
-version = "0.23.14"
+version = "0.24.7"
 default-features = false
+features = ["png"]
 
 [dependencies.nokhwa]
 path = "../.."
